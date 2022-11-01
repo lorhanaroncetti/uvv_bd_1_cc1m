@@ -1,1 +1,7 @@
-# uvv_bd_1_cc1m
+# PSET 01
+---
+## ALUNO(A): Lorhana Roncetti 
+## PROFESSOR(A): Abrantes Araujo
+---
+
+**Para que serve um subdiretório?**
