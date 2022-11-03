@@ -3,7 +3,6 @@
 ## ALUNO(A): Lorhana Roncetti 
 ## PROFESSOR(A): Abrantes Araujo
 ---
+  Esse projeto chamado "PSet 01", é para a diciplina de Design e Desenvolvimento de Banco de Dados do curso de Engenharia de Computação.  
+  O PSet 01, é um conjunto de problemas e tarefas difíceis que "força" o aluno a estudar e realmente compreender a matéria.
 
-**Para que serve um subdiretório?**  
-
-  Primeiramente, um subdiretório é um diretório criado a partir de um domínio principal. Segundo, ele serve para organizar categorias dentro de um site, seja agrupando pastas de arquivos e/ou arquivos.
