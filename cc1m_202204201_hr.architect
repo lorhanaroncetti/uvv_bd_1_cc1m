@@ -1,168 +1,157 @@
+<changeSet author="CHANGEME" id="CHANGEME">
+<createTable tableName="Cargos">
+  <column name="id_cargo" type="VARCHAR(10)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="nome_cargo" type="VARCHAR(35)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="salario_minimo" type="DECIMAL(8,2)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="salario_maximo" type="DECIMAL(8,2)">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
+<addPrimaryKey tableName="Cargos" constraintName="cargos_pk" columnNames="id_cargo"/>
 
-CREATE TABLE Cargos (
-                id_cargo VARCHAR(10) NOT NULL,
-                nome_cargo VARCHAR(35) NOT NULL,
-                salario_minimo NUMERIC(8,2) NOT NULL,
-                salario_maximo NUMERIC(8,2) NOT NULL,
-                CONSTRAINT cargos_pk PRIMARY KEY (id_cargo)
-);
+<createTable tableName="Regioes">
+  <column name="id_regiao" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="nome_regiao" type="VARCHAR(25)"/>
+</createTable>
+<addPrimaryKey tableName="Regioes" constraintName="regioes_pk" columnNames="id_regiao"/>
 
+<createIndex tableName="Regioes" indexName="regioes_idx" unique="true">
+  <column name="nome_regiao"/>
+</createIndex>
 
-CREATE TABLE Regioes (
-                id_regiao INTEGER NOT NULL,
-                nome_regiao VARCHAR(25),
-                CONSTRAINT regioes_pk PRIMARY KEY (id_regiao)
-);
+<createTable tableName="Paises">
+  <column name="id_pais" type="CHAR(2)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="nome_pais" type="VARCHAR(50)"/>
+  <column name="id_regiao" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
+<addPrimaryKey tableName="Paises" constraintName="paises_pk" columnNames="id_pais"/>
 
+<createIndex tableName="Paises" indexName="paises_idx" unique="true">
+  <column name="nome_pais"/>
+</createIndex>
 
-CREATE UNIQUE INDEX regioes_idx
- ON Regioes
- ( nome_regiao );
+<createTable tableName="Localizacoes">
+  <column name="id_localizacao" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="endereco" type="VARCHAR(50)"/>
+  <column name="cidade" type="VARCHAR(50)"/>
+  <column name="cep" type="VARCHAR(8)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="uf" type="VARCHAR(25)"/>
+  <column name="id_pais" type="CHAR(2)">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
+<addPrimaryKey tableName="Localizacoes" constraintName="localizacoes_pk" columnNames="id_localizacao"/>
 
-CREATE TABLE Paises (
-                id_pais CHAR(2) NOT NULL,
-                nome_pais VARCHAR(50),
-                id_regiao INTEGER NOT NULL,
-                CONSTRAINT paises_pk PRIMARY KEY (id_pais)
-);
+<createTable tableName="Departamentos">
+  <column name="id_departamento" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_gerente" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="nome_departamento" type="VARCHAR(50)"/>
+  <column name="id_localizacao" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
 
+<createIndex tableName="Departamentos" indexName="departamentos_idx" unique="true">
+  <column name="nome_departamento"/>
+</createIndex>
 
-CREATE UNIQUE INDEX paises_idx
- ON Paises
- ( nome_pais );
+<createTable tableName="Empregados">
+  <column name="id_empregado" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_departamento" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="data_contratacao" type="DATE">
+    <constraints nullable="false"/>
+  </column>
+  <column name="nome_empregado" type="VARCHAR(100)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="telefone" type="VARCHAR(30)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="email" type="VARCHAR(35)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_cargo" type="VARCHAR(10)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="salario" type="DECIMAL(8,2)">
+    <constraints nullable="false"/>
+  </column>
+  <column name="comissao" type="DECIMAL(4,2)"/>
+  <column name="id_supervisor" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
 
-CREATE TABLE Localizacoes (
-                id_localizacao INTEGER NOT NULL,
-                endereco VARCHAR(50),
-                cidade VARCHAR(50),
-                cep VARCHAR(8) NOT NULL,
-                uf VARCHAR(25),
-                id_pais CHAR(2) NOT NULL,
-                CONSTRAINT localizacoes_pk PRIMARY KEY (id_localizacao)
-);
+<createTable tableName="Gerentes">
+  <column name="id_departamento" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_gerente" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_empregado" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
 
+<createTable tableName="Historico_Cargos">
+  <column name="id_empregado" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="data_inicial" type="DATE">
+    <constraints nullable="false"/>
+  </column>
+  <column name="id_departamento" type="INTEGER">
+    <constraints nullable="false"/>
+  </column>
+  <column name="data_final" type="DATE"/>
+  <column name="id_cargo" type="VARCHAR(10)">
+    <constraints nullable="false"/>
+  </column>
+</createTable>
+<addPrimaryKey tableName="Historico_Cargos" constraintName="historico_cargos_pk" columnNames="id_empregado"/>
 
-CREATE TABLE Departamentos (
-                id_departamento INTEGER NOT NULL,
-                id_gerente INTEGER NOT NULL,
-                nome_departamento VARCHAR(50),
-                id_localizacao INTEGER NOT NULL,
-                CONSTRAINT departamentos_pk PRIMARY KEY (id_departamento, id_gerente)
-);
+<addForeignKeyConstraint baseTableName="Empregados" constraintName="cargos_empregados_fk" baseColumnNames="id_cargo" referencedTableName="Cargos" referencedColumnNames="id_cargo"/>
 
+<addForeignKeyConstraint baseTableName="Historico_Cargos" constraintName="cargos_historico_cargos_fk" baseColumnNames="id_cargo" referencedTableName="Cargos" referencedColumnNames="id_cargo"/>
 
-CREATE UNIQUE INDEX departamentos_idx
- ON Departamentos
- ( nome_departamento );
+<addForeignKeyConstraint baseTableName="Paises" constraintName="regioes_paises_fk" baseColumnNames="id_regiao" referencedTableName="Regioes" referencedColumnNames="id_regiao"/>
 
-CREATE TABLE Empregados (
-                id_empregado INTEGER NOT NULL,
-                id_departamento INTEGER NOT NULL,
-                data_contratacao DATE NOT NULL,
-                nome_empregado VARCHAR(100) NOT NULL,
-                telefone VARCHAR(30) NOT NULL,
-                email VARCHAR(35) NOT NULL,
-                id_cargo VARCHAR(10) NOT NULL,
-                salario NUMERIC(8,2) NOT NULL,
-                comissao NUMERIC(4,2),
-                id_supervisor INTEGER NOT NULL,
-                Parent_id_empregado INTEGER NOT NULL,
-                Parent_id_departamento INTEGER NOT NULL,
-                CONSTRAINT empregados_pk PRIMARY KEY (id_empregado, id_departamento)
-);
+<addForeignKeyConstraint baseTableName="Localizacoes" constraintName="paises_localizacoes_fk" baseColumnNames="id_pais" referencedTableName="Paises" referencedColumnNames="id_pais"/>
 
+<addForeignKeyConstraint baseTableName="Departamentos" constraintName="localizacoes_departamentos_fk" baseColumnNames="id_localizacao" referencedTableName="Localizacoes" referencedColumnNames="id_localizacao"/>
 
-CREATE TABLE Gerentes (
-                id_departamento INTEGER NOT NULL,
-                id_gerente INTEGER NOT NULL,
-                id_empregado INTEGER NOT NULL,
-                CONSTRAINT gerentes_pk PRIMARY KEY (id_departamento, id_gerente, id_empregado)
-);
+<addForeignKeyConstraint baseTableName="Empregados" constraintName="departamentos_empregados_fk" baseColumnNames="id_departamento" referencedTableName="Departamentos" referencedColumnNames="id_departamento"/>
 
+<addForeignKeyConstraint baseTableName="Historico_Cargos" constraintName="departamentos_historico_cargos_fk" baseColumnNames="id_departamento" referencedTableName="Departamentos" referencedColumnNames="id_departamento"/>
 
-CREATE TABLE Historico_Cargos (
-                id_empregado INTEGER NOT NULL,
-                data_inicial DATE NOT NULL,
-                id_departamento INTEGER NOT NULL,
-                data_final DATE,
-                id_cargo VARCHAR(10) NOT NULL,
-                CONSTRAINT historico_cargos_pk PRIMARY KEY (id_empregado)
-);
+<addForeignKeyConstraint baseTableName="Gerentes" constraintName="departamentos_gerentes_fk" baseColumnNames="id_departamento, id_gerente" referencedTableName="Departamentos" referencedColumnNames="id_departamento, id_gerente"/>
 
+<addForeignKeyConstraint baseTableName="Historico_Cargos" constraintName="empregados_historico_cargos_fk" baseColumnNames="id_empregado" referencedTableName="Empregados" referencedColumnNames="id_empregado"/>
 
-ALTER TABLE Empregados ADD CONSTRAINT cargos_empregados_fk
-FOREIGN KEY (id_cargo)
-REFERENCES Cargos (id_cargo)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Historico_Cargos ADD CONSTRAINT cargos_historico_cargos_fk
-FOREIGN KEY (id_cargo)
-REFERENCES Cargos (id_cargo)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Paises ADD CONSTRAINT regioes_paises_fk
-FOREIGN KEY (id_regiao)
-REFERENCES Regioes (id_regiao)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Localizacoes ADD CONSTRAINT paises_localizacoes_fk
-FOREIGN KEY (id_pais)
-REFERENCES Paises (id_pais)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Departamentos ADD CONSTRAINT localizacoes_departamentos_fk
-FOREIGN KEY (id_localizacao)
-REFERENCES Localizacoes (id_localizacao)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Empregados ADD CONSTRAINT departamentos_empregados_fk
-FOREIGN KEY (id_departamento)
-REFERENCES Departamentos (id_departamento)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Historico_Cargos ADD CONSTRAINT departamentos_historico_cargos_fk
-FOREIGN KEY (id_departamento)
-REFERENCES Departamentos (id_departamento)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Gerentes ADD CONSTRAINT departamentos_gerentes_fk
-FOREIGN KEY (id_departamento, id_gerente)
-REFERENCES Departamentos (id_departamento, id_gerente)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Historico_Cargos ADD CONSTRAINT empregados_historico_cargos_fk
-FOREIGN KEY (id_empregado)
-REFERENCES Empregados (id_empregado)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Empregados ADD CONSTRAINT empregados_empregados_fk
-FOREIGN KEY (Parent_id_empregado, Parent_id_departamento)
-REFERENCES Empregados (id_empregado, id_departamento)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
-
-ALTER TABLE Gerentes ADD CONSTRAINT empregados_gerentes_fk
-FOREIGN KEY (id_empregado, id_departamento)
-REFERENCES Empregados (id_empregado, id_departamento)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
+<addForeignKeyConstraint baseTableName="Gerentes" constraintName="empregados_gerentes_fk" baseColumnNames="id_empregado, id_departamento" referencedTableName="Empregados" referencedColumnNames="id_empregado, id_departamento"/>
+</changeSet>
