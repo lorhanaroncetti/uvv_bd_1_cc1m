@@ -1,7 +1,7 @@
 # PSET 01
 ---
 #### ALUNO(A): Lorhana Roncetti  
-#### PROFESSOR(A): Abrantes Araujo  
+#### PROFESSOR(A): Abrantes Araújo  
 #### DISCIPLINA: Design e Desenvolvimento de Banco de Dados  
 #### TURMA: CC1M  
 #### INSTITUIÇÃO: Universidade de Vila Velha
