@@ -12,5 +12,6 @@ Este primeiro Problem Set, da disciplina de Design e Desenvolvimento de Banco de
 
 ---
 ### Programas utilizados no projeto:  
-  VCS: [Git](https://git-scm.com/) e [GitHub](https://github.com/)  
-  SGBD: [Oracle](https://www.oracle.com/), [MariaDB](https://mariadb.org/), [MySQL](https://www.mysql.com/) e [PostSQL](https://www.postgresql.org/)
+  > VCS: [Git](https://git-scm.com/) e [GitHub](https://github.com/)  
+  > SGBD: [Oracle](https://www.oracle.com/), [MariaDB](https://mariadb.org/), [MySQL](https://www.mysql.com/) e [PostSQL](https://www.postgresql.org/)
+  
