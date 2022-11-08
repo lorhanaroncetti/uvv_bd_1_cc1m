@@ -1,3 +1,6 @@
+![lolo](https://user-images.githubusercontent.com/69554007/200473119-e36a7d58-37c4-4230-8a35-3de10886eda3.png)
+
+
 # PSET 01
 ---
 #### ALUNO(A): Lorhana Roncetti  
