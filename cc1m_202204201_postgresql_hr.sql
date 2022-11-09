@@ -2,7 +2,6 @@ create user lorhana with createdb
 createrole inherit replication bypassrls encrypted
 password '202204201';
 
-
 create database uvv
 owner = lorhana
 template = template0 
@@ -15,6 +14,7 @@ ALTER SCHEMA hr OWNER TO lorhana;
 
 SET SEARCH_PATH TO hr, "$user", public;
 select current_schema();
+
 
 
 CREATE TABLE hr.Cargos (
