@@ -35,7 +35,6 @@ CREATE UNIQUE INDEX cargos_idx
  ON hr.Cargos
  ( nome_cargo );
  
- ---
  
 CREATE TABLE hr.Regioes (
                 id_regiao INTEGER NOT NULL,
@@ -46,7 +45,6 @@ COMMENT ON TABLE hr.Regioes IS 'a tabela regiões contém os id's e nomes das re
 COMMENT ON COLUMN hr.Regioes.id_regiao IS 'é a chave primária desta tabela.';
 COMMENT ON COLUMN hr.Regioes.nome_regiao IS 'nomes da região.';
 
----
 
 CREATE TABLE hr.Paises (
                 id_pais_char CHAR(2) NOT NULL,
@@ -59,7 +57,6 @@ COMMENT ON COLUMN hr.Paises.id_pais IS 'é a chave primária desta tabela.';
 COMMENT ON COLUMN hr.Paises.nome_pais IS 'é o nome do país.';
 COMMENT ON COLUMN hr.Paises.id_regiao IS 'é a chave primária da tabela regiões. ela apareceu aqui por conta do relacionamento entre as tabelas hr.Paises-hr.Regioes';
 
----
 
 CREATE TABLE hr.Localizacoes (
                 id_localizacao INTEGER NOT NULL,
@@ -78,7 +75,6 @@ COMMENT ON COLUMN hr.Localizacoes.cidade IS 'cidade onde se encontra a empresa.'
 COMMENT ON COLUMN hr.Localizacoes.uf IS 'estado em que se encontra a empresa';
 COMMENT ON COLUMN hr.Localizacoes.id_pais IS 'é a chave primária da tabela países. ela apareceu aqui por conta do relacionamento hr.Localizacoes-hr.Paises';
 
----
 
 CREATE TABLE hr.Departamentos (
                 id_departamento INTEGER NOT NULL,
@@ -95,7 +91,7 @@ CREATE UNIQUE INDEX departamentos_idx
  ON hr.Departamentos
  ( nome_depart );
  
- ---
+
 
 CREATE TABLE hr.Empregados (
                 id_empregado INTEGER NOT NULL,
@@ -127,8 +123,6 @@ CREATE UNIQUE INDEX empregados_idx
  ON hr.Empregados
  ( email );
 
----
-
 CREATE TABLE hr.Supervisao (
                 id_supervisor INTEGER NOT NULL,
                 id_gerente INTEGER NOT NULL,
@@ -138,7 +132,6 @@ COMMENT ON TABLE hr.Supervisao IS 'Tabela que contém as informações dos super
 COMMENT ON COLUMN hr.Supervisao.id_supervisor IS 'chave primária da tabela.';
 COMMENT ON COLUMN hr.Supervisao.id_gerente IS 'chave primária da tabela.';
 
----
 
 CREATE TABLE hr.HIstorico_Cargos (
                 id_empregado INTEGER NOT NULL,
@@ -156,7 +149,6 @@ COMMENT ON COLUMN hr.HIstorico_Cargos.data_final IS 'data em que o empregado mud
 COMMENT ON COLUMN hr.HIstorico_Cargos.id_cargo IS 'FK da tabela.';
 COMMENT ON COLUMN hr.HIstorico_Cargos.id_departamento IS 'FK da tabela.';
 
----
 
 ALTER TABLE hr.HIstorico_Cargos ADD CONSTRAINT cargos_historico_cargos_fk
 FOREIGN KEY (id_cargo)
