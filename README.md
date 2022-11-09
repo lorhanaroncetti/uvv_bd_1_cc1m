@@ -12,13 +12,16 @@
 ---
 
 ### Sobre este repositório
-Este repositório foi criado com o intuito de resolver o primeiro Problem Set(PSet), da disciplina de Design e Desenvolvimento de Banco de Dados do curso Engenharia de Computação da Universidade de Vila Velha.
+Este repositório foi criado com o intuito de resolver o primeiro Problem Set(PSet), da disciplina de Design e Desenvolvimento de Banco de Dados do curso Engenharia de Computação da Universidade de Vila Velha.  
+
 
 ### O que é um PSet?
-Um PSet é um conjunto de problemas e tarefas difíceis que o forçam o aluno a estudar e realmente compreender a matéria. O objetivo do Problem Set é fazer com que o aluno aprenda e se familiarize com o material e resolva problemas típicos.
+Um PSet é um conjunto de problemas e tarefas difíceis que o forçam o aluno a estudar e realmente compreender a matéria. O objetivo do Problem Set é fazer com que o aluno aprenda e se familiarize com o material e resolva problemas típicos.  
+
 
 ### Objetivos deste PSet
-O objetivo deste PSet em específico, é fazer com que aprendamos sobre sistemas de controles de versões, em especial o Git e o serviço web GitHub e, ainda, aprender sobre Markdown (em especial a versão GitHub Flavored Markdown). Além disso, busca nos ensinar sobre como implementar projetos lógicos em SGBD's, utilizando os quatro SGBD's relacionais mais comuns e importantes hoje em dia: PostgreSQL, Oracle, MariaBD/MySQL e MS SQL Server.
+O objetivo deste PSet em específico, é fazer com que aprendamos sobre sistemas de controles de versões, em especial o Git e o serviço web GitHub e, ainda, aprender sobre Markdown (em especial a versão GitHub Flavored Markdown). Além disso, busca nos ensinar sobre como implementar projetos lógicos em SGBD's, utilizando os quatro SGBD's relacionais mais comuns e importantes hoje em dia: PostgreSQL, Oracle, MariaBD/MySQL e MS SQL Server.  
+
 
 ### Programas utilizados no projeto
   > + VCS: [Git](https://git-scm.com/) e [GitHub](https://github.com/)  
