@@ -12,7 +12,7 @@
 ---
 
 ### Sobre este repositório
-Este repositório foi criado com o intuito de resolver o primeiro Problem Set(PSet), da disciplina de Design e Desenvolvimento de Banco de Dados do curso Engenharia de Computação da Universidade de Vila Velha. Ademais, o PSet, tem como objetivo a prática da criação, resolução e documentação de um banco de dados.
+Este repositório foi criado com o intuito de resolver o primeiro Problem Set(PSet), da disciplina de Design e Desenvolvimento de Banco de Dados do curso Engenharia de Computação da Universidade de Vila Velha.
 
 ### O que é um PSet?
 Um PSet é um conjunto de problemas e tarefas difíceis que o forçam o aluno a estudar e realmente compreender a matéria. O objetivo do Problem Set é fazer com que o aluno aprenda e se familiarize com o material e resolva problemas típicos.
