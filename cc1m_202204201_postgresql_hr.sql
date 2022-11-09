@@ -7,6 +7,8 @@ create database uvv
 owner = lorhana
 template = template0 
 encoding = 'UTF8';
+lc_collate = 'pt_BR.UTF-8' 
+lc_ctype = 'pt_BR.UTF-8';
 
 CREATE SCHEMA hr;
 ALTER SCHEMA hr OWNER TO lorhana;
