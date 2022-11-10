@@ -53,13 +53,13 @@ CREATE UNIQUE INDEX cargos_idx
  
 COMMENT ON TABLE hr.Cargos is 'Tabela cargos, que armazena os dados dos cargos, inclusive a faixa salarial de cada um.';
 
-comment on column hr.Cargos.id_cargo is 'Se refere ao código identificador atribuído a um cargo. Funciona como chave primária da tabela cargos.';
+COMMENT ON COLUMN hr.Cargos.id_cargo is 'Se refere ao código identificador atribuído a um cargo. Funciona como chave primária da tabela cargos.';
 
-comment on column hr.Cargos.nome_cargo is 'Se refere ao nome atribuído a um cargo. Funciona como índice único.';
+COMMENT ON COLUMN hr.Cargos.nome_cargo is 'Se refere ao nome atribuído a um cargo. Funciona como índice único.';
 
-comment on column hr.Cargos.salario_minimo is 'Se refere ao menor salário admitido para um cargo, em reais (sem R$). Deve ser maior ou igual a 1.212 e menor que o valor da coluna salario_maximo.';
+COMMENT ON COLUMN hr.Cargos.salario_minimo is 'Se refere ao menor salário admitido para um cargo, em reais (sem R$). Deve ser maior ou igual a 1.212 e menor que o valor da coluna salario_maximo.';
 
-comment on column hr.Cargos.salario_maximo is 'Se refere ao maior salário admitido para um cargo, em reais (sem R$). Deve ser maior que o valor da coluna salario_minimo.';
+COMMENT ON COLUMN hr.Cargos.salario_maximo is 'Se refere ao maior salário admitido para um cargo, em reais (sem R$). Deve ser maior que o valor da coluna salario_minimo.';
 
 
  
@@ -73,11 +73,11 @@ CREATE TABLE hr.Regioes (
 CREATE UNIQUE INDEX regi_es_idx
  ON hr.Regioes( nome );
  
-COMMENT ON TABLE hr.Regioes is 'Tabela regiões, que armazena as regiões em que estão presentes os países nos quais.';
+COMMENT ON TABLE hr.Regioes is 'Tabela regiões, que armazena as informações das regiões. É uma tabela do tipo 1:N.';
 
 COMMENT ON COLUMN hr.Regioes.id_regiao is 'Se refere ao código identificador atribuído a uma região a qual o país onde está localizado um escritório ou facilidade da empresa pertence. Funciona como chave primária da tabela regiões.';
 
-COMMENT ON COLUMN hr.Regioes.nome is 'Se refere ao nome de uma região a qual o país onde está localizado um escritório ou facilidade da empresa pertence. Funciona como chave primária da tabela regiões. Funciona como índice único.';
+COMMENT ON COLUMN hr.Regioes.nome is 'Se refere ao nome de uma região a qual o país onde está localizado um escritório ou facilidade da empresa pertence.';
 
 
  
@@ -92,14 +92,13 @@ CREATE TABLE hr.Paises (
 CREATE UNIQUE INDEX pa_ses_idx
  ON hr.Paises( nome_pais );
  
-COMMENT ON TABLE hr.Paises is 'Tabela países, que armazena os países nos quais existem escritórios e facilidades da empresa.';
+COMMENT ON TABLE hr.Paises is 'Tabela que informa nome e código de países nos quais existem escritórios e também uma FK (id_pais).';
 
 COMMENT ON COLUMN hr.Paises.id_pais is 'Se refere ao código identificador atribuído a um país onde está localizado um escritório ou facilidade da empresa. Funciona como chave primária da tabela países.';
 
 COMMENT ON COLUMN hr.Paises.nome_pais is 'Se refere ao nome do país onde está localizado um escritório ou facilidade da empresa. Funciona como índice único.';
 
-COMMENT ON COLUMN hr.Paises.id_regiao is 'Se refere ao código identificador atribuído a uma região a qual o país onde está localizado um escritório ou facilidade da empresa pertence. Funciona como chave estrangeira para a tabela regiões.';
-
+COMMENT ON COLUMN hr.Paises.id_regiao is 'É uma chave estrangeira do tipo integer (numero não fracionário). Como toda FK, esta coluna não pode ser deixada com o valor nulo.';
  
  
  
@@ -117,15 +116,15 @@ COMMENT ON TABLE hr.Localizaes is 'Tabela localizações, que armazena os endere
 
 COMMENT ON COLUMN hr.Localizaes.id_localizacao is 'Se refere ao código identificador atribuído a uma localização onde está localizado um escritório ou facilidade da empresa. Funciona como chave primária da tabela localizações.';
 
-COMMENT ON COLUMN hr.Localizaes.endereco is 'Se refere ao endereço, constituído de número e logradouro, de um escritório ou facilidade da empresa.';
+COMMENT ON COLUMN hr.Localizaes.endereco is 'Se refere ao endereço, constituído de número e logradouro, de um escritório.';
 
 COMMENT ON COLUMN hr.Localizaes.cep is 'Se refere ao CEP da localização de um escritório ou facilidade da empresa, coloquei como not null para facilitar a localização do endereço.';
 
-COMMENT ON COLUMN hr.Localizaes.cidade is 'Se refere a cidade onde está localizado de um escritório ou facilidade da empresa.';
+COMMENT ON COLUMN hr.Localizaes.cidade is 'Se refere a cidade onde está localizado um escritório.';
 
-COMMENT ON COLUMN hr.Localizaes.uf is 'Se refere ao estado (por extenso) onde está localizado o escritório ou facilidade da empresa.';
+COMMENT ON COLUMN hr.Localizaes.uf is 'Se refere ao estado (por extenso) onde está localizado o escritório.';
 
-COMMENT ON COLUMN hr.Localizaes.id_pais is 'Se refere ao código identificador atribuído a um país onde está localizado um escritório ou facilidade da empresa. Funciona como chave estrangeira para a tabela países.';
+COMMENT ON COLUMN hr.Localizaes.id_pais is 'Se refere ao código identificador atribuído a um país onde está localizado um escritório. Funciona como FK para a tabela países.';
 
 
 
@@ -144,11 +143,11 @@ CREATE UNIQUE INDEX departamentos_idx
  
 COMMENT ON TABLE hr.Departamentos is 'Tabela departamentos, que armazena os dados  dos  departamentos da empresa.';
 
-COMMENT ON COLUMN hr.Departamentos.id_departamento is  'Se refere ao código identificador atribuído a um departamento. Funciona como chave primária da tabela departamentos.';
+COMMENT ON COLUMN hr.Departamentos.id_departamento is  'Se refere ao código identificador atribuído a um departamento. Funciona PK da tabela departamentos.';
 
 COMMENT ON COLUMN hr.Departamentos.nome is 'Se refere ao nome atribuído a um departamento. Funciona como índice único.';
 
-COMMENT ON COLUMN hr.Departamentos.id_localizacao is 'Se refere ao código identificador da localização a qual o departamento pertence. Funciona como chave estrangeira para a tabela localizações.';
+COMMENT ON COLUMN hr.Departamentos.id_localizacao is 'Se refere ao código identificador da localização a qual o departamento pertence. Funciona como FK para a tabela localizações.';
 
 
  
@@ -188,13 +187,13 @@ COMMENT ON COLUMN hr.Empregados.id_empregados is 'Se refere ao código identific
 
 COMMENT ON COLUMN hr.Empregados.nome_empregado is 'Se refere ao nome completo do empregado.';
 
-COMMENT ON COLUMN hr.Empregados.email is 'Se refere a parte inicial do email do empregado (antes do @). Funciona como índice único.';
+COMMENT ON COLUMN hr.Empregados.email is 'Se refere a parte inicial do email do empregado.';
 
 COMMENT ON COLUMN hr.empregados.telefone is 'Se refere ao telefone do empregado. Deve ser inserido o código do país e do estado (sem espaço e sem caracteres especiais).';
 
 COMMENT ON COLUMN hr.Empregados.data_contratacao is 'Se refere a data em que o cargo atual foi atribuído ao empregado';
 
-COMMENT ON COLUMN hr.Empregados.id_cargo is 'Se refere ao código identificador atribuído ao cargo atual do empregado. Funciona como chave estrangeira para a tabela cargos.';
+COMMENT ON COLUMN hr.Empregados.id_cargo is 'Se refere ao código identificador atribuído ao cargo atual do empregado. Funciona como FK para a tabela cargos.';
 
 COMMENT ON COLUMN hr.Empregados.salario is 'Se refere ao salário atual do empregado, em reais (sem R$). Deve ser maior ou igual a 1.212.';
 
@@ -202,7 +201,7 @@ COMMENT ON COLUMN hr.Empregados.comissao is 'Se refere a porcentagem de comissã
 
 COMMENT ON COLUMN hr.Empregados.id_departamento is 'Se refere ao código identificador atribuído ao departamento que o empregado pertence.  Funciona como chave estrangeira para a tabela departamentos.';
 
-COMMENT ON COLUMN hr.Empregados.id_supervisor is 'Se refere ao empregado que atua como supervisor direto do empregado em questão. Funciona como chave estrangeira para a própria tabela empregados autorelacionamento.';
+COMMENT ON COLUMN hr.Empregados.id_supervisor is 'Se refere ao empregado que atua como supervisor direto do empregado em questão. Funciona como FK para a própria tabela empregados autorelacionamento.';
 
 
  
@@ -214,11 +213,11 @@ CREATE TABLE hr.Supervisao (
                 id_gerente INTEGER NOT NULL,
                 CONSTRAINT supervisao_pk PRIMARY KEY (id_departamento, id_empregados));
 
-COMMENT ON TABLE hr.Supervisao is 'Tabela supervisao, que armazena as informações referentes a qual empregado gerencia qual departamento.'; 
+COMMENT ON TABLE hr.Supervisao is 'Tabela supervisao, que armazena as informações referentes a qual empregado gerencia qual departamento. Possui PFK para a tabela funcionários.'; 
 
 COMMENT ON COLUMN hr.Supervisao.id_departamento is 'Se refere ao código identificador atribuído ao departamento que o empregado trabalha como gerente. Junto com a coluna id_gerente, funciona como chave primária composta da tabela trabalha_em. Também funciona como chave  estrangeira para a tabela departamentos.';
 
-COMMENT ON COLUMN hr.Supervisao.id_gerente is 'Se refere ao código identificador atribuído a um empregado que gerencia um departamento. Junto com a coluna id_departamento funciona como chave primária composta da tabela trabalha_em. Também funciona como chave estrangeira para a tabela empregados.';
+COMMENT ON COLUMN hr.Supervisao.id_gerente is 'Se refere ao código identificador atribuído a um empregado que gerencia um departamento. A chave primária vai garantir que este valor não seja repetido ou confundido com a identificação de outro funcionário.';
 
 
 
@@ -237,15 +236,13 @@ ALTER TABLE hr.Historico_Cargos
 				
 COMMENT ON TABLE hr.Historico_Cargos is 'Tabela histórico_cargos, que armazena o histórico de cargos de um empregado. Uma linha nova deve ser inserida para cada alteração feita no cadastro de um empregado, como por exemplo uma transferência de departamento ou de cargo.';
 
-COMMENT ON COLUMN hr.Historico_Cargos.data_inicial is 'Se refere ao código identificador atribuído a umm histórico. Funciona como chave primária da tabela historico_cargos.';
-
-COMMENT ON COLUMN hr.Historico_Cargos.id_empregados is 'Se refere ao código identificador atribuído a um empregado.  Funciona como chave estrangeira para a tabela empregados.';
-
-COMMENT ON COLUMN hr.Historico_Cargos.data_inicial is 'Se refere a data em que o cargo foi atribuído ao empregado. Deve ser menor do que a data_final.';
+COMMENT ON COLUMN hr.Historico_Cargos.data_inicial is 'Se refere ao código identificador atribuído a um histórico. Funciona como chave primária da tabela historico_cargos. Deve ser menor do que a data_final';
 
 COMMENT ON COLUMN hr.Historico_Cargos.data_final is 'Se refere ao último dia em que o empregado exerceu o cargo. Deve ser maior que a data_inicial.';
 
 COMMENT ON COLUMN hr.Historico_Cargos.id_cargo  is 'Se refere ao código identificador atribuído ao cargo do empregado. Funciona como chave estrangeira para a tabela cargos.';
+
+COMMENT ON COLUMN hr.Historico_Cargos.id_empregados is 'Se refere ao código identificador atribuído a um empregado.  Funciona como chave estrangeira para a tabela empregados.';
 
 COMMENT ON COLUMN hr.Historico_Cargos.id_departamento is 'Se refere ao código identificador atribuído ao departamento ao qual o empregado pertence. Funciona como chave estrangeira para a tabela departamentos.';
              
