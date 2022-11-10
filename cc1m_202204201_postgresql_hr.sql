@@ -51,7 +51,6 @@ ALTER TABLE hr.Cargos
 CREATE UNIQUE INDEX cargos_idx
  ON hr.Cargos( nome_cargo );
  
-
 COMMENT ON TABLE hr.Cargos is 'Tabela cargos, que armazena os dados dos cargos, inclusive a faixa salarial de cada um.';
 
 comment on column hr.Cargos.id_cargo is 'Se refere ao código identificador atribuído a um cargo. Funciona como chave primária da tabela cargos.';
