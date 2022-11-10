@@ -1,20 +1,39 @@
-create user lorhana with createdb
-createrole inherit replication bypassrls encrypted
-password '202204201';
+-- Criando um usuário no PostgreSQL:
 
-create database uvv
-owner = lorhana
-template = template0 
-encoding = 'UTF8'
-lc_collate = 'pt_BR.UTF-8' 
-lc_ctype = 'pt_BR.UTF-8';
+CREATE USER lorhana WITH
+  SUPERUSER
+  CREATEDB
+  CREATEROLE
+  INHERIT
+  REPLICATION
+  BYPASSRLS
+  ENCRYPTED PASSWORD '202204201';
+  
+  
+-- Criando um BD no PostgreSQL:
+
+CREATE DATABASE uvv
+  WITH OWNER = raquel
+  TEMPLATE = template)
+  ENCODING = 'UTF8'
+  LC_COLLATE = 'pt_BR.UTF-8'
+  LC_CTYPE = 'pt_BR.UTF-8'
+  ALLOW_CONNECTIONS = true;
+  
+  
+-- Criando um esquema hr e autorizando o usuário criado:
 
 CREATE SCHEMA hr;
 ALTER SCHEMA hr OWNER TO lorhana;
 
-SET SEARCH_PATH TO hr, "$user", public;
-select current_schema();
 
+-- Configurando o search path para hr:
+
+SET SEARCH_PATH TO hr, "$user", public;
+SELECT current_schema();
+
+
+-- Criando as tabelas, colunas e index:
 
 CREATE TABLE hr.Cargos (
                 id_cargo VARCHAR(10) NOT NULL,
@@ -23,13 +42,12 @@ CREATE TABLE hr.Cargos (
                 salario_maximo NUMERIC(8,2) NOT NULL,
                 CONSTRAINT cargos_pk PRIMARY KEY (id_cargo));
 
-alter table hr.Cargos 
+ALTER TABLE hr.Cargos
                  add constraint salario_minimo_check 
-    			 check (salario_minimo >= 1212), 
-    			 add constraint salario_minimo_maximo_check 
-    			 check (salario_maximo > salario_minimo);
-
-
+    			check (salario_minimo >= 1212), 
+    			add constraint salario_minimo_maximo_check 
+    			check (salario_maximo > salario_minimo);
+			
 CREATE UNIQUE INDEX cargos_idx
  ON hr.Cargos( nome_cargo );
  
@@ -39,20 +57,24 @@ CREATE TABLE hr.Regioes (
                 id_regiao INTEGER NOT NULL,
                 nome VARCHAR(50),
                 CONSTRAINT regioes_pk PRIMARY KEY (id_regiao));
-
-
+		
 CREATE UNIQUE INDEX regi_es_idx
  ON hr.Regioes( nome );
+ 
+ 
+ 
 
 CREATE TABLE hr.Paises (
                 id_pais CHAR(2) NOT NULL,
                 nome_pais VARCHAR(50),
                 id_regiao INTEGER NOT NULL,
                 CONSTRAINT paises_pk PRIMARY KEY (id_pais));
-
-
+		
 CREATE UNIQUE INDEX pa_ses_idx
  ON hr.Paises( nome_pais );
+ 
+ 
+ 
 
 CREATE TABLE hr.Localizaes (
                 id_localizacao INTEGER NOT NULL,
@@ -64,15 +86,20 @@ CREATE TABLE hr.Localizaes (
                 CONSTRAINT localizaes_pk PRIMARY KEY (id_localizacao));
 
 
+
+
 CREATE TABLE hr.Departamentos (
                 id_departamento INTEGER NOT NULL,
                 nome VARCHAR(50),
                 id_localizacao INTEGER NOT NULL,
                 CONSTRAINT departamentos_pk PRIMARY KEY (id_departamento));
-
+		
 
 CREATE UNIQUE INDEX departamentos_idx
  ON hr.Departamentos( nome );
+ 
+ 
+ 
 
 CREATE TABLE hr.Empregados (
                 id_empregados INTEGER NOT NULL,
@@ -86,8 +113,9 @@ CREATE TABLE hr.Empregados (
                 id_departamento INTEGER NOT NULL,
                 id_supervisor INTEGER NOT NULL,
                 CONSTRAINT empregados_pk PRIMARY KEY (id_empregados));
-
-alter table hr.Empregados add constraint empregados_cargos_fk
+		
+ALTER TABLE hr.Empregados 
+	add constraint empregados_cargos_fk
                  foreign key (id_cargo)
                  references cargos(id_cargo),
                  add constraint empregados_departamentos_fk 
@@ -97,15 +125,19 @@ alter table hr.Empregados add constraint empregados_cargos_fk
         		     check (salario >= 1212),
         		     add constraint comissao_check 
     			       check (comissao between 0 and 30);
-
-
+			       
 CREATE UNIQUE INDEX empregados_idx
  ON hr.Empregados( email );
+ 
+ 
+ 
 
 CREATE TABLE hr.Supervisao (
                 id_departamento INTEGER NOT NULL,
                 id_gerente INTEGER NOT NULL,
                 CONSTRAINT supervisao_pk PRIMARY KEY (id_departamento, id_empregados));
+
+
 
 
 CREATE TABLE hr.Historico_Cargos (
@@ -116,7 +148,7 @@ CREATE TABLE hr.Historico_Cargos (
                 id_departamento INTEGER NOT NULL,
                 CONSTRAINT historico_cargos_pk PRIMARY KEY (data_inicial));
 
-alter table hr.Historico_Cargos 
+ALTER TABLE hr.Historico_Cargos
              add constraint data_inicial_final_check 
 				     check (data_inicial < data_final);
              
