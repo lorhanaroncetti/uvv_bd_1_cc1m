@@ -1,5 +1,3 @@
-*.rb linguist-language=sql
-
 
 -- Criando um usuário no MariaDB:
 
