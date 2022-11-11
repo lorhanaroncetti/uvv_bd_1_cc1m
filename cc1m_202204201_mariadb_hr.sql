@@ -144,11 +144,11 @@ CREATE TABLE Empregados (
                
 ALTER TABLE Empregados add
                 constraint salario_check 
-        		check (salario >= 1212);
+        	check (salario >= 1212);
         	
 ALTER TABLE Empregados add
-				constraint comissao_check 
-    			check (comissao between 0 and 30);
+		constraint comissao_check 
+    		check (comissao between 0 and 30);
 
 CREATE UNIQUE INDEX empregados_idx
  ON Empregados( email );
