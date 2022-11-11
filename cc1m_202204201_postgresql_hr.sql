@@ -326,3 +326,8 @@ REFERENCES hr.Empregados (id_empregados)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
+
+
+
+
+-- Inserção dos dados:
