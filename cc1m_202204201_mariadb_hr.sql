@@ -1,3 +1,5 @@
+*.sql nguist-detectable=true
+
 -- Criando um usuário no MariaDB:
 
 CREATE USER 'lorhana'@localhost identified by '202204201';
