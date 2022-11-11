@@ -27,13 +27,9 @@ CREATE UNIQUE INDEX cargos_idx
  ON Cargos( nome_cargo );
 
 ALTER TABLE Cargos COMMENT 'Tabela cargos, que armazena os dados dos cargos, inclusive a faixa salarial de cada um.';
-
 ALTER TABLE Cargos MODIFY COLUMN id_cargo VARCHAR(10) COMMENT 'Se refere ao código identificador atribuído a um cargo. Funciona como chave primária da tabela cargos.';
-
 ALTER TABLE Cargos MODIFY COLUMN  nome_cargo VARCHAR(35) COMMENT 'Se refere ao nome atribuído a um cargo. Funciona como índice único.';
-
 ALTER TABLE Cargos MODIFY COLUMN salario_minimo DECIMAL(8,2) COMMENT 'Se refere ao menor salário admitido para um cargo, em reais (sem R$). Deve ser maior ou igual a 1.212 e menor que o valor da coluna salario_maximo.';
-
 ALTER TABLE Cargos MODIFY COLUMN salario_maximo DECIMAL(8,2) COMMENT 'Se refere ao maior salário admitido para um cargo, em reais (sem R$). Deve ser maior que o valor da coluna salario_minimo.';
 
 
